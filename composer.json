@@ -1,0 +1,26 @@
+{
+    "name": "mpociot/chuch-norris-jokes",
+    "description": "learning php packcage dev",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^8.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Patric Poba",
+            "email": "poba.dev@outlook.com"
+        }
+    ],
+    "require": {},
+    "autoload":{
+        "psr-4":{
+            "Mpociot\\ChuckNorrisJokes\\": "src/" 
+        }
+    },
+    "autoload-dev":{
+        "psr-4":{
+            "Mpociot\\ChuckNorrisJokes\\Tests\\": "tests/" 
+        }
+    }
+}
