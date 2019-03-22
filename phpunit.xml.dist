@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="ChuchNorris TestSuite">
+        <testsuite name="Chuck Norris TestSuite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
