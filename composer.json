@@ -1,5 +1,5 @@
 {
-    "name": "mpociot/chuch-norris-jokes",
+    "name": "patricpoba/chuck-norris-jokes",
     "description": "learning php packcage dev",
     "type": "library",
     "require-dev": {
