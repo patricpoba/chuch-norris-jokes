@@ -2,24 +2,26 @@
 
 namespace Mpociot\ChuckNorrisJokes;
 
+use GuzzleHttp\Client;
+
 class JokeFactory
 {
-    protected $jokes = [
-        'The First rule of Chuck Norris is: you do not talk about Chuck Norris.',
-        'Chuck Norris does not wear a condom. Because there is no such thing as protection from Chuck Norris.',
-        'Chuck Norris\' tears cure cancer. Too bad he has never cried.',
-        'Chuck Norris counted to infinity... Twice.',
-    ];
+    protected $client;
 
-    public function __construct(array $jokes = null)
-    {
-        if ($jokes) {
-            $this->jokes = $jokes;
-        }
+    const API_ENDPOINT = "http://api.icndb.com/jokes/random";
+ 
+ 
+    public function __construct(Client $client = null)
+    { 
+        $this->client = $client ?: new Client(); 
     }
 
     public function getRandomJoke()
     {
-        return $this->jokes[array_rand($this->jokes)];
+        $response = $this->client->get(static::API_ENDPOINT);
+
+        $joke = json_decode($response->getBody()->getContents());
+
+        return $joke->value->joke;
     }
 }
