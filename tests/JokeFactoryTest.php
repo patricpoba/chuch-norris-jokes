@@ -2,19 +2,18 @@
 
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
-use Mpociot\ChuckNorrisJokes\JokeFactory;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Handler\MockHandler;
+use Mpociot\ChuckNorrisJokes\JokeFactory;
 
 class JokeFactoryTest extends TestCase
 {
-    
     /** @test */
     public function it_returns_a_random_joke()
     {
         $mock = new MockHandler([
-            new Response(200, [], '{"type":"success","value":{"id":318,"joke":"If you work in an office with Chuck Norris, don\'t ask him for his three-hole-punch.","categories":[]}}')
+            new Response(200, [], '{"type":"success","value":{"id":318,"joke":"If you work in an office with Chuck Norris, don\'t ask him for his three-hole-punch.","categories":[]}}'),
         ]);
 
         $handler = HandlerStack::create($mock);
@@ -28,7 +27,7 @@ class JokeFactoryTest extends TestCase
         $this->assertSame("If you work in an office with Chuck Norris, don't ask him for his three-hole-punch.", $joke);
     }
 
-    /** @test */
+    /* @test */
     // public function it_returns_a_predefined_joke()
     // {
     //     $chuchJokes = [

@@ -8,12 +8,11 @@ class JokeFactory
 {
     protected $client;
 
-    const API_ENDPOINT = "http://api.icndb.com/jokes/random";
- 
- 
+    const API_ENDPOINT = 'http://api.icndb.com/jokes/random';
+
     public function __construct(Client $client = null)
-    { 
-        $this->client = $client ?: new Client(); 
+    {
+        $this->client = $client ?: new Client();
     }
 
     public function getRandomJoke()
