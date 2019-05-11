@@ -30,3 +30,6 @@ Please make sure to update tests as appropriate.
 
 
 Generted by [http://makeareadme.com](http://makeareadme.com)
+
+# [Testbench] (https://orchestraplatform.com/docs/latest/components/testbench)
+Testbench Component is a simple package that is supposed to help you write tests for your Laravel package.
