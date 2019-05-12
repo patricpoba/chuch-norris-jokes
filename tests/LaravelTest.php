@@ -37,5 +37,22 @@ class LaravelTest extends TestCase
 
 		$this->assertSame('some joke'. PHP_EOL, $output);
 	}
+
+	/** @test */
+	public function the_route_can_be_accessed()
+	{
+		$this->get('/chuck-norris')
+				->assertStatus(200);
+	}
+
+	/** @test */
+	public function the_route_page_contains_a_joke()
+	{
+		ChuckNorris::shouldReceive('getRandomJoke')->once()->andReturn('some joke');
+		
+		$pageContent = $this->get('/chuck-norris')->getContent();
+
+		$this->assertStringContainsString('some joke', $pageContent);
+	}
 	 
 }

@@ -2,8 +2,10 @@
 
 namespace Mpociot\ChuckNorrisJokes;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Mpociot\ChuckNorrisJokes\Console\ChuckNorrisJoke;
+use Mpociot\ChuckNorrisJokes\Http\Controllers\ChuckNorrisController;
 use Mpociot\ChuckNorrisJokes\JokeFactory;
 
  
@@ -17,6 +19,9 @@ class ChuckNorrisJokesServiceProvider extends ServiceProvider
 					ChuckNorrisJoke::class
 			]);
 		}
+
+		Route::get('chuck-norris', ChuckNorrisController::class);
+
 	}
 
 	public function register()
