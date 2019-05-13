@@ -5,6 +5,7 @@ namespace Mpociot\ChuckNorrisJokes\Tests;
 use Illuminate\Support\Facades\Artisan;
 use Mpociot\ChuckNorrisJokes\ChuckNorrisJokesServiceProvider;
 use Mpociot\ChuckNorrisJokes\Facades\ChuckNorris;
+use Mpociot\ChuckNorrisJokes\Models\Joke;
 use Orchestra\Testbench\TestCase;
 
 class LaravelTest extends TestCase
@@ -20,6 +21,13 @@ class LaravelTest extends TestCase
 	    return [
 	        'ChuckNorris' => ChuckNorris::class
 	    ];
+	}
+
+	public function getEnvironmentSetup($app)
+	{
+		include_once __DIR__ . '/../database/migrations/create_jokes_table.php.stub';
+
+		(new \CreateJokesTable)->up();
 	}
 
 	/** @test */
@@ -58,6 +66,18 @@ class LaravelTest extends TestCase
 		
 		$pageContent = $this->get('/chuck-norris')
 							->assertViewHas('joke', 'some joke'); 
+	}
+
+	/** @test */
+	public function it_can_access_the_database()
+	{
+		$joke = new Joke();
+		$joke->joke = 'this is funny';
+		$joke->save();
+
+		$newJoke = Joke::find($joke->id);
+
+		$this->assertSame($newJoke->joke, 'this is funny');
 	}
 	 
 }
