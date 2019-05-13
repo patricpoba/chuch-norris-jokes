@@ -41,18 +41,23 @@ class LaravelTest extends TestCase
 	/** @test */
 	public function the_route_can_be_accessed()
 	{
+		ChuckNorris::shouldReceive('getRandomJoke')
+			->once()
+			->andReturn('some joke');
+
 		$this->get('/chuck-norris')
+				->assertViewIs('chuck-norris::joke')
+				->assertViewHas('joke', 'some joke')
 				->assertStatus(200);
 	}
 
 	/** @test */
-	public function the_route_page_contains_a_joke()
+	public function the_route_page_has_a_joke_variable()
 	{
 		ChuckNorris::shouldReceive('getRandomJoke')->once()->andReturn('some joke');
 		
-		$pageContent = $this->get('/chuck-norris')->getContent();
-
-		$this->assertStringContainsString('some joke', $pageContent);
+		$pageContent = $this->get('/chuck-norris')
+							->assertViewHas('joke', 'some joke'); 
 	}
 	 
 }
